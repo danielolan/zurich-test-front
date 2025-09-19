@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
+import axios from 'axios';
 import type { 
   ApiResponse, 
   ApiError,
@@ -12,13 +12,13 @@ import type {
   User,
   LoginCredentials,
   AuthResponse
-} from '@/types';
+} from '../types';
 
-// Configuración base de la API
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+// Configuración base de la API - VITE usa import.meta.env en lugar de process.env
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 
-// Crear instancia de axios
-const apiClient: AxiosInstance = axios.create({
+// Crear instancia de axios - Sin AxiosInstance
+const apiClient = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
   headers: {
@@ -35,8 +35,8 @@ apiClient.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`;
     }
     
-    // Log de requests en desarrollo
-    if (process.env.NODE_ENV === 'development') {
+    // Log de requests en desarrollo - VITE usa import.meta.env.DEV
+    if (import.meta.env.DEV) {
       console.log(`🚀 ${config.method?.toUpperCase()} ${config.url}`, config.data);
     }
     
@@ -48,19 +48,19 @@ apiClient.interceptors.request.use(
   }
 );
 
-// Interceptor para responses
+// Interceptor para responses - Sin tipos específicos de Axios
 apiClient.interceptors.response.use(
-  (response: AxiosResponse) => {
+  (response) => {
     // Log de responses en desarrollo
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.DEV) {
       console.log(`✅ ${response.config.method?.toUpperCase()} ${response.config.url}`, response.data);
     }
     
     return response;
   },
-  (error: AxiosError) => {
+  (error) => {
     // Manejo centralizado de errores
-    const errorMessage = (error.response?.data as any)?.error?.message || error.message || 'Ha ocurrido un error';
+    const errorMessage = error.response?.data?.error?.message || error.message || 'Ha ocurrido un error';
     
     console.error('❌ Response error:', {
       status: error.response?.status,
@@ -85,8 +85,8 @@ apiClient.interceptors.response.use(
   }
 );
 
-// Función para manejar respuestas de la API
-const handleApiResponse = <T>(response: AxiosResponse<ApiResponse<T>>): T => {
+// Función para manejar respuestas de la API - Sin tipos específicos
+const handleApiResponse = <T>(response: any): T => {
   if (response.data.success) {
     return response.data.data as T;
   } else {
@@ -114,28 +114,28 @@ export const api = {
       const queryString = queryParams.toString();
       const url = queryString ? `/tasks?${queryString}` : '/tasks';
       
-      return apiClient.get<ApiResponse<TasksResponse>>(url).then(handleApiResponse);
+      return apiClient.get(url).then(handleApiResponse);
     },
     
     // Obtener tarea por ID
     getById: (id: string): Promise<TaskResponse> => 
-      apiClient.get<ApiResponse<TaskResponse>>(`/tasks/${id}`).then(handleApiResponse),
+      apiClient.get(`/tasks/${id}`).then(handleApiResponse),
     
     // Crear nueva tarea
     create: (taskData: CreateTaskData): Promise<TaskResponse> => 
-      apiClient.post<ApiResponse<TaskResponse>>('/tasks', taskData).then(handleApiResponse),
+      apiClient.post('/tasks', taskData).then(handleApiResponse),
     
     // Actualizar tarea completa
     update: (id: string, taskData: UpdateTaskData): Promise<TaskResponse> => 
-      apiClient.put<ApiResponse<TaskResponse>>(`/tasks/${id}`, taskData).then(handleApiResponse),
+      apiClient.put(`/tasks/${id}`, taskData).then(handleApiResponse),
     
     // Actualizar tarea parcial
     patch: (id: string, taskData: Partial<UpdateTaskData>): Promise<TaskResponse> => 
-      apiClient.patch<ApiResponse<TaskResponse>>(`/tasks/${id}`, taskData).then(handleApiResponse),
+      apiClient.patch(`/tasks/${id}`, taskData).then(handleApiResponse),
     
     // Toggle estado de tarea
     toggle: (id: string): Promise<TaskResponse> => 
-      apiClient.patch<ApiResponse<TaskResponse>>(`/tasks/${id}/toggle`).then(handleApiResponse),
+      apiClient.patch(`/tasks/${id}/toggle`).then(handleApiResponse),
     
     // Eliminar tarea
     delete: (id: string): Promise<void> => 
@@ -143,7 +143,7 @@ export const api = {
     
     // Obtener estadísticas
     getStats: (): Promise<TaskStatsResponse> => 
-      apiClient.get<ApiResponse<TaskStatsResponse>>('/tasks/stats').then(handleApiResponse),
+      apiClient.get('/tasks/stats').then(handleApiResponse),
   },
   
   // Auth (mock para cumplir con requisitos opcionales)

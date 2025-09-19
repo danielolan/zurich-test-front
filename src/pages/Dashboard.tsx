@@ -12,12 +12,12 @@ import {
   Users,
   BarChart3
 } from 'lucide-react';
-import { useTasks } from '@/hooks/useTasks';
-import TaskCard from '@/components/tasks/TaskCard';
-import TaskStatsComponent from '@/components/tasks/TaskStats';
-import Button from '@/components/ui/Button';
-import Badge from '@/components/ui/Badge';
-import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { useTasks } from '../hooks/useTasks';
+import TaskCard from '../components/tasks/TaskCard';
+import TaskStatsComponent from '../components/tasks/TaskStats';
+import Button from '../components/ui/Button';
+import Badge from '../components/ui/Badge';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
 import { clsx } from 'clsx';
 import type { Task } from '@/types';
 

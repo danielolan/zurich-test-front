@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { Calendar, FileText, Save, X } from 'lucide-react';
-import Input from '@/components/ui/Input';
-import Button from '@/components/ui/Button';
-import { PriorityBadge, StatusBadge } from '@/components/ui/Badge';
+import Input from '../../components/ui/Input';
+import Button from '../../components/ui/Button';
+import { PriorityBadge, StatusBadge } from '../../components/ui/Badge';
 import { clsx } from 'clsx';
-import type { Task, CreateTaskData, UpdateTaskData, TaskPriority, TaskStatus } from '@/types';
+import type { Task, CreateTaskData, UpdateTaskData, TaskPriority, TaskStatus } from '../../types';
 
 interface TaskFormData {
   title: string;

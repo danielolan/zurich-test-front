@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { api } from '@/services/api';
+import { api } from '../services/api';
 import { useNotification } from './useNotification';
 import type { 
   Task,
@@ -11,7 +11,7 @@ import type {
   TasksByPriority,
   PaginationInfo,
   UseTasksReturn
-} from '@/types';
+} from '../types';
 
 const INITIAL_FILTERS: TaskFilters = {
   status: undefined,

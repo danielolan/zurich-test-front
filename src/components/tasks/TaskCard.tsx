@@ -13,9 +13,9 @@ import {
 } from 'lucide-react';
 import { format, isAfter, isBefore, addDays } from 'date-fns';
 import { es } from 'date-fns/locale';
-import Button from '@/components/ui/Button';
-import { StatusBadge, PriorityBadge } from '@/components/ui/Badge';
-import type { Task } from '@/types';
+import Button from '../../components/ui/Button';
+import { StatusBadge, PriorityBadge } from '../../components/ui/Badge';
+import type { Task } from '../../types';
 
 interface TaskCardProps {
   task: Task;

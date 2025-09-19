@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
-import { useTasks } from '@/hooks/useTasks';
-import { useNotification } from '@/hooks/useNotification';
-import TaskList from '@/components/tasks/TaskList';
-import TaskStatsComponent from '@/components/tasks/TaskStats';
-import TaskForm from '@/components/tasks/TaskForm';
-import Modal, { ModalBody, ModalFooter } from '@/components/ui/Modal';
-import Button from '@/components/ui/Button';
-import { LoadingOverlay } from '@/components/ui/LoadingSpinner';
-import type { Task, CreateTaskData, UpdateTaskData } from '@/types';
+import { useTasks } from '../hooks/useTasks';
+import { useNotification } from '../hooks/useNotification';
+import TaskList from '../components/tasks/TaskList';
+import TaskStatsComponent from '../components/tasks/TaskStats';
+import TaskForm from '../components/tasks/TaskForm';
+import Modal, { ModalBody, ModalFooter } from '../components/ui/Modal';
+import Button from '../components/ui/Button';
+import { LoadingOverlay } from '../components/ui/LoadingSpinner';
+import type { Task, CreateTaskData, UpdateTaskData } from '../types';
 
 const TasksPage: React.FC = () => {
   // Estados locales

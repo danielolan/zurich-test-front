@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { clsx } from 'clsx';
 import { Plus, Filter, Search, LayoutGrid, List, SortAsc, SortDesc } from 'lucide-react';
 import TaskCard from './TaskCard';
-import LoadingSpinner from '@/components/ui/LoadingSpinner';
-import Button from '@/components/ui/Button';
-import Input from '@/components/ui/Input';
-import Badge from '@/components/ui/Badge';
-import type { Task, TaskFilters, TasksByStatus } from '@/types';
+import LoadingSpinner from '../../components/ui/LoadingSpinner';
+import Button from '../../components/ui/Button';
+import Input from '../../components/ui/Input';
+import Badge from '../../components/ui/Badge';
+import type { Task, TaskFilters, TasksByStatus } from '../../types';
 
 interface TaskListProps {
   tasks: Task[];

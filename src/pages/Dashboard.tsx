@@ -110,7 +110,7 @@ const Dashboard: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="lg:col-span-2 space-y-6"
           >
-            {/* Tareas urgentes */}
+          
             <div className="card-base p-6">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">

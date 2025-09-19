@@ -46,7 +46,7 @@ const TaskList: React.FC<TaskListProps> = ({
 }) => {
   const [viewMode, setViewMode] = React.useState<ViewMode>('grid');
   const [showFilters, setShowFilters] = React.useState(false);
-
+console.log(tasks,"-----tasks-----");
   // Contenedor de animaciones para las tareas
   const containerVariants = {
     hidden: { opacity: 0 },
